@@ -8,6 +8,7 @@ using Mere12.Models;
 
 namespace Mere12.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         public IActionResult Index()
