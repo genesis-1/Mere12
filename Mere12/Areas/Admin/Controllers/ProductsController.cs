@@ -94,110 +94,110 @@ namespace Mere12.Controllers
 
 
 
-        ////GET : Edit
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        //GET : Edit
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    ProductsVM.Products = await _context.Products.Include(m => m.SpecialTags).Include(m => m.ProductTypes).SingleOrDefaultAsync(m => m.Id == id);
+            ProductsVM.Products = await _context.Products.Include(m => m.SpecialTags).Include(m => m.ProductTypes).SingleOrDefaultAsync(m => m.Id == id);
 
-        //    if (ProductsVM.Products == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (ProductsVM.Products == null)
+            {
+                return NotFound();
+            }
 
-        //    return View(ProductsVM);
-        //}
-
-
-        ////Post : Edit
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        string webRootPath = _hostingEnvironment.WebRootPath;
-        //        var files = HttpContext.Request.Form.Files;
-
-        //        var productFromDb = _context.Products.Where(m => m.Id == ProductsVM.Products.Id).FirstOrDefault();
-
-        //        if (files.Count > 0 && files[0] != null)
-        //        {
-        //            //if user uploads a new image
-        //            var uploads = Path.Combine(webRootPath, SD.ImageFolder);
-        //            var extension_new = Path.GetExtension(files[0].FileName);
-        //            var extension_old = Path.GetExtension(productFromDb.Image);
-
-        //            if (System.IO.File.Exists(Path.Combine(uploads, ProductsVM.Products.Id + extension_old)))
-        //            {
-        //                System.IO.File.Delete(Path.Combine(uploads, ProductsVM.Products.Id + extension_old));
-        //            }
-        //            using (var filestream = new FileStream(Path.Combine(uploads, ProductsVM.Products.Id + extension_new), FileMode.Create))
-        //            {
-        //                files[0].CopyTo(filestream);
-        //            }
-        //            ProductsVM.Products.Image = @"\" + SD.ImageFolder + @"\" + ProductsVM.Products.Id + extension_new;
-        //        }
-
-        //        if (ProductsVM.Products.Image != null)
-        //        {
-        //            productFromDb.Image = ProductsVM.Products.Image;
-        //        }
-
-        //        productFromDb.Name = ProductsVM.Products.Name;
-        //        productFromDb.Price = ProductsVM.Products.Price;
-        //        productFromDb.Available = ProductsVM.Products.Available;
-        //        productFromDb.ProductTypeId = ProductsVM.Products.ProductTypeId;
-        //        productFromDb.SpecialTagsID = ProductsVM.Products.SpecialTagsID;
-        //        productFromDb.ShadeColor = ProductsVM.Products.ShadeColor;
-        //        await _context.SaveChangesAsync();
-
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    return View(ProductsVM);
-        //}
+            return View(ProductsVM);
+        }
 
 
-        ////GET : Details
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        //Post : Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
 
-        //    ProductsVM.Products = await _context.Products.Include(m => m.SpecialTags).Include(m => m.ProductTypes).SingleOrDefaultAsync(m => m.Id == id);
+                var productFromDb = _context.Products.Where(m => m.Id == ProductsVM.Products.Id).FirstOrDefault();
 
-        //    if (ProductsVM.Products == null)
-        //    {
-        //        return NotFound();
-        //    }
+                if (files.Count > 0 && files[0] != null)
+                {
+                    //if user uploads a new image
+                    var uploads = Path.Combine(webRootPath, SD.ImageFolder);
+                    var extension_new = Path.GetExtension(files[0].FileName);
+                    var extension_old = Path.GetExtension(productFromDb.Image);
 
-        //    return View(ProductsVM);
-        //}
+                    if (System.IO.File.Exists(Path.Combine(uploads, ProductsVM.Products.Id + extension_old)))
+                    {
+                        System.IO.File.Delete(Path.Combine(uploads, ProductsVM.Products.Id + extension_old));
+                    }
+                    using (var filestream = new FileStream(Path.Combine(uploads, ProductsVM.Products.Id + extension_new), FileMode.Create))
+                    {
+                        files[0].CopyTo(filestream);
+                    }
+                    ProductsVM.Products.Image = @"\" + SD.ImageFolder + @"\" + ProductsVM.Products.Id + extension_new;
+                }
 
-        ////GET : Delete
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+                if (ProductsVM.Products.Image != null)
+                {
+                    productFromDb.Image = ProductsVM.Products.Image;
+                }
 
-        //    ProductsVM.Products = await _context.Products.Include(m => m.SpecialTags).Include(m => m.ProductTypes).SingleOrDefaultAsync(m => m.Id == id);
+                productFromDb.Name = ProductsVM.Products.Name;
+                productFromDb.Price = ProductsVM.Products.Price;
+                productFromDb.Available = ProductsVM.Products.Available;
+                productFromDb.ProductTypeId = ProductsVM.Products.ProductTypeId;
+                productFromDb.SpecialTagId = ProductsVM.Products.SpecialTagId;
+                productFromDb.ShadeColor = ProductsVM.Products.ShadeColor;
+                await _context.SaveChangesAsync();
 
-        //    if (ProductsVM.Products == null)
-        //    {
-        //        return NotFound();
-        //    }
+                return RedirectToAction(nameof(Index));
+            }
 
-        //    return View(ProductsVM);
-        //}
+            return View(ProductsVM);
+        }
+
+
+        //GET : Details
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ProductsVM.Products = await _context.Products.Include(m => m.SpecialTags).Include(m => m.ProductTypes).SingleOrDefaultAsync(m => m.Id == id);
+
+            if (ProductsVM.Products == null)
+            {
+                return NotFound();
+            }
+
+            return View(ProductsVM);
+        }
+
+        //GET : Delete
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ProductsVM.Products = await _context.Products.Include(m => m.SpecialTags).Include(m => m.ProductTypes).SingleOrDefaultAsync(m => m.Id == id);
+
+            if (ProductsVM.Products == null)
+            {
+                return NotFound();
+            }
+
+            return View(ProductsVM);
+        }
 
         ////POST : Delete
         //[HttpPost, ActionName("Delete")]
