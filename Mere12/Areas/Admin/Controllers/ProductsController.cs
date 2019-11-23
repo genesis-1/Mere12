@@ -199,32 +199,32 @@ namespace Mere12.Controllers
             return View(ProductsVM);
         }
 
-        ////POST : Delete
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    string webRootPath = _hostingEnvironment.WebRootPath;
-        //    Products products = await _context.Products.FindAsync(id);
+        //POST : Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            Products products = await _context.Products.FindAsync(id);
 
-        //    if (products == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    else
-        //    {
-        //        var uploads = Path.Combine(webRootPath, SD.ImageFolder);
-        //        var extension = Path.GetExtension(products.Image);
+            if (products == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var uploads = Path.Combine(webRootPath, SD.ImageFolder);
+                var extension = Path.GetExtension(products.Image);
 
-        //        if (System.IO.File.Exists(Path.Combine(uploads, products.Id + extension)))
-        //        {
-        //            System.IO.File.Delete(Path.Combine(uploads, products.Id + extension));
-        //        }
-        //        _context.Products.Remove(products);
-        //        await _context.SaveChangesAsync();
+                if (System.IO.File.Exists(Path.Combine(uploads, products.Id + extension)))
+                {
+                    System.IO.File.Delete(Path.Combine(uploads, products.Id + extension));
+                }
+                _context.Products.Remove(products);
+                await _context.SaveChangesAsync();
 
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //}
+                return RedirectToAction(nameof(Index));
+            }
+        }
     }
 }
