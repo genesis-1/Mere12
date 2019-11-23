@@ -23,7 +23,7 @@ namespace Mere12.Areas.Admin.Controllers
         // GET: Admin/ProductTypes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.productTypes.ToListAsync());
+            return View(await _context.ProductTypes.ToListAsync());
         }
 
         // GET: Admin/ProductTypes/Details/5
@@ -34,7 +34,7 @@ namespace Mere12.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var productTypes = await _context.productTypes
+            var productTypes = await _context.ProductTypes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productTypes == null)
             {
@@ -74,7 +74,7 @@ namespace Mere12.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var productTypes = await _context.productTypes.FindAsync(id);
+            var productTypes = await _context.ProductTypes.FindAsync(id);
             if (productTypes == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace Mere12.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var productTypes = await _context.productTypes
+            var productTypes = await _context.ProductTypes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productTypes == null)
             {
@@ -140,15 +140,15 @@ namespace Mere12.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var productTypes = await _context.productTypes.FindAsync(id);
-            _context.productTypes.Remove(productTypes);
+            var productTypes = await _context.ProductTypes.FindAsync(id);
+            _context.ProductTypes.Remove(productTypes);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductTypesExists(int id)
         {
-            return _context.productTypes.Any(e => e.Id == id);
+            return _context.ProductTypes.Any(e => e.Id == id);
         }
     }
 }

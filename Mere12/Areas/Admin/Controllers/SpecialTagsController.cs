@@ -23,7 +23,7 @@ namespace Mere12.Areas.Admin.Controllers
         // GET: Admin/SpecialTags
         public async Task<IActionResult> Index()
         {
-            return View(await _context.specialTags.ToListAsync());
+            return View(await _context.SpecialTags.ToListAsync());
         }
 
         // GET: Admin/SpecialTags/Details/5
@@ -34,7 +34,7 @@ namespace Mere12.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var specialTags = await _context.specialTags
+            var specialTags = await _context.SpecialTags
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (specialTags == null)
             {
@@ -74,7 +74,7 @@ namespace Mere12.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var specialTags = await _context.specialTags.FindAsync(id);
+            var specialTags = await _context.SpecialTags.FindAsync(id);
             if (specialTags == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace Mere12.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var specialTags = await _context.specialTags
+            var specialTags = await _context.SpecialTags
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (specialTags == null)
             {
@@ -140,15 +140,15 @@ namespace Mere12.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var specialTags = await _context.specialTags.FindAsync(id);
-            _context.specialTags.Remove(specialTags);
+            var specialTags = await _context.SpecialTags.FindAsync(id);
+            _context.SpecialTags.Remove(specialTags);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SpecialTagsExists(int id)
         {
-            return _context.specialTags.Any(e => e.Id == id);
+            return _context.SpecialTags.Any(e => e.Id == id);
         }
     }
 }

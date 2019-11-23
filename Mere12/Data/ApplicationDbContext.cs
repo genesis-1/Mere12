@@ -13,7 +13,9 @@ namespace Mere12.Data
             : base(options)
         {
         }
-        public DbSet<ProductTypes> productTypes { get; set; }
-        public DbSet<SpecialTags> specialTags { get; set; }
+        public DbSet<ProductTypes> ProductTypes { get; set; }
+        public DbSet<SpecialTags> SpecialTags { get; set; }
+        public DbSet<Products> Products { get; set; }
+        
     }
 }
