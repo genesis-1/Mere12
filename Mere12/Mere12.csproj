@@ -6,6 +6,10 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\images\71jai78-kSL._SL1500_.jpg" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -16,7 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="wwwroot\image\ProductImage\" />
+    <Folder Include="wwwroot\images\ProductImage\" />
   </ItemGroup>
 
 </Project>
