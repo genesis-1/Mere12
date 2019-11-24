@@ -25,9 +25,11 @@ namespace Mere12.Controllers
             return View(productList);
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var product = await _context.Products.Include(m => m.ProductTypes).Include(m => m.SpecialTags).Where(m => m.Id == id).FirstOrDefaultAsync();
+
+            return View(product);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
