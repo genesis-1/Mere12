@@ -48,6 +48,21 @@ namespace Mere12.Controllers
             return RedirectToAction("Index", "Home", new { area = "Customer" });
         }
 
+        public IActionResult Remove(int id)
+        {
+            List<int> listShoppingCart = HttpContext.Session.Get<List<int>>("ssShopingCart");
+            if (listShoppingCart.Count > 0)
+            {
+                if(listShoppingCart.Contains(id))
+                {
+                    listShoppingCart.Remove(id);
+                }
+            }
+            HttpContext.Session.Set("ssShopingCart", listShoppingCart);
+
+            return RedirectToAction(nameof(Index));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
